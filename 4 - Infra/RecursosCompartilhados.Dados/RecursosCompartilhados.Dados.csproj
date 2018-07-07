@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="mongocsharpdriver" Version="2.5.1" />
+    <PackageReference Include="MongoDB.Bson" Version="2.5.1" />
+    <PackageReference Include="MongoDB.Driver" Version="2.5.1" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\3 - Dominio\RecursosCompartilhados.Dominio\RecursosCompartilhados.Dominio.csproj" />
+  </ItemGroup>
+
+</Project>
