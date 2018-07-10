@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://github.com/lennonalvesdias/RecursosCompartilhadosNetCoreMongoDB/blob/master/LICENSE</PackageLicenseUrl>
+    <Authors>Lennon Alves</Authors>
+    <Company>Lennon Alves</Company>
+    <PackageProjectUrl>https://github.com/lennonalvesdias/RecursosCompartilhadosNetCoreMongoDB</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lennonalvesdias/RecursosCompartilhadosNetCoreMongoDB</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
