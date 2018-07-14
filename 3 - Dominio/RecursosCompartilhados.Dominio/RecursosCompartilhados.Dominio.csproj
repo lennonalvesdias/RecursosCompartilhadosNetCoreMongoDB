@@ -10,6 +10,8 @@
     <PackageProjectUrl>https://github.com/lennonalvesdias/RecursosCompartilhadosNetCoreMongoDB</PackageProjectUrl>
     <RepositoryUrl>https://github.com/lennonalvesdias/RecursosCompartilhadosNetCoreMongoDB</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
+    <PackageId>LA.RecursosCompartilhados.Dominio</PackageId>
+    <Description>Projeto open-source desenvolvido em .NET Core. Este projeto visa ser código base para aplicações, contendo abstrações e interfaces preparadas para futuros desenvolvimentos da comunidade. Recursos de Domínio.</Description>
   </PropertyGroup>
 
   <ItemGroup>
