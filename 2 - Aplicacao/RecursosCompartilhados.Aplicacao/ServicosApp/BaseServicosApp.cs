@@ -17,9 +17,10 @@ namespace RecursosCompartilhados.Aplicacao.ServicosApp
             _servicos = servicos;
         }
 
-        void IBaseServicosApp<TEntidade, TViewModel>.Atualizar(TEntidade entidade)
+        TViewModel IBaseServicosApp<TEntidade, TViewModel>.Atualizar(TEntidade entidade)
         {
-            _servicos.Atualizar(entidade);
+            var viewModel = _mapper.Map<TViewModel>(_servicos.Atualizar(entidade));
+            return viewModel;
         }
 
         TViewModel IBaseServicosApp<TEntidade, TViewModel>.Buscar(Guid id)
@@ -34,9 +35,10 @@ namespace RecursosCompartilhados.Aplicacao.ServicosApp
             _servicos.Dispose();
         }
 
-        void IBaseServicosApp<TEntidade, TViewModel>.Inserir(TEntidade entidade)
+        TViewModel IBaseServicosApp<TEntidade, TViewModel>.Inserir(TEntidade entidade)
         {
-            _servicos.Inserir(entidade);
+            var viewModel = _mapper.Map<TViewModel>(_servicos.Inserir(entidade));
+            return viewModel;
         }
 
         IList<TViewModel> IBaseServicosApp<TEntidade, TViewModel>.Listar()
