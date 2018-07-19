@@ -17,10 +17,10 @@ public abstract class BaseRepositorio<TEntidade> : IBaseRepositorio<TEntidade> w
         return;
     }
 
-    void IBaseRepositorio<TEntidade>.Atualizar(TEntidade entidade)
+    TEntidade IBaseRepositorio<TEntidade>.Atualizar(TEntidade entidade)
     {
         entidade.DataAtualizacaoRegistro = DateTime.Now;
-        BaseCollection.FindOneAndReplace(x => x.Id == entidade.Id, entidade);
+        return BaseCollection.FindOneAndReplace(x => x.Id == entidade.Id, entidade);
     }
 
     TEntidade IBaseRepositorio<TEntidade>.Buscar(Guid id)
@@ -28,12 +28,13 @@ public abstract class BaseRepositorio<TEntidade> : IBaseRepositorio<TEntidade> w
         return BaseCollection.Find(x => x.Id == id).FirstOrDefault();
     }
 
-    void IBaseRepositorio<TEntidade>.Inserir(TEntidade entidade)
+    TEntidade IBaseRepositorio<TEntidade>.Inserir(TEntidade entidade)
     {
         entidade.Id = Guid.NewGuid();
         entidade.DataCriacaoRegistro = DateTime.Now;
         entidade.DataAtualizacaoRegistro = DateTime.Now;
         BaseCollection.InsertOne(entidade);
+        return entidade;
     }
 
     IList<TEntidade> IBaseRepositorio<TEntidade>.Listar()
