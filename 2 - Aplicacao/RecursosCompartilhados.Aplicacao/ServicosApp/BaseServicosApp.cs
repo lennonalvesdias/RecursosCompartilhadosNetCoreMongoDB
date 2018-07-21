@@ -23,7 +23,7 @@ namespace RecursosCompartilhados.Aplicacao.ServicosApp
             return viewModel;
         }
 
-        TViewModel IBaseServicosApp<TEntidade, TViewModel>.Buscar(Guid id)
+        TViewModel IBaseServicosApp<TEntidade, TViewModel>.Buscar(string id)
         {
             var entidade = _servicos.Buscar(id);
             var viewModel = _mapper.Map<TViewModel>(entidade);
@@ -48,7 +48,7 @@ namespace RecursosCompartilhados.Aplicacao.ServicosApp
             return listaViewModel;
         }
 
-        void IBaseServicosApp<TEntidade, TViewModel>.Remover(Guid id)
+        void IBaseServicosApp<TEntidade, TViewModel>.Remover(string id)
         {
             _servicos.Remover(id);
         }

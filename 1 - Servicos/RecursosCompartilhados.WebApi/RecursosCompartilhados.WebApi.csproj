@@ -11,7 +11,7 @@
     <Authors>Lennon Alves</Authors>
     <PackageId>LA.RecursosCompartilhados.WebApi</PackageId>
     <Description>Projeto open-source desenvolvido em .NET Core. Este projeto visa ser código base para aplicações, contendo abstrações e interfaces preparadas para futuros desenvolvimentos da comunidade. Recursos de Api.</Description>
-    <Version>1.1.0.1</Version>
+    <Version>1.1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>

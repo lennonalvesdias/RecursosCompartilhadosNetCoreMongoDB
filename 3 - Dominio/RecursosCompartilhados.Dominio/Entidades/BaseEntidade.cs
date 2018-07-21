@@ -5,7 +5,7 @@ namespace RecursosCompartilhados.Dominio.Entidades
 {
     public abstract class BaseEntidade : IBaseEntidade
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         public DateTime DataAtualizacaoRegistro { get; set; }
 

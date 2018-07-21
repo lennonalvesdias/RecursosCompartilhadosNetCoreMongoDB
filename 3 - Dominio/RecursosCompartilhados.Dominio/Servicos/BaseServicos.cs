@@ -26,7 +26,7 @@ namespace RecursosCompartilhados.Dominio.Servicos
             return _repositorio.Atualizar(entidade);
         }
 
-        TEntidade IBaseServicos<TEntidade>.Buscar(Guid id)
+        TEntidade IBaseServicos<TEntidade>.Buscar(string id)
         {
             return _repositorio.Buscar(id);
         }
@@ -41,7 +41,7 @@ namespace RecursosCompartilhados.Dominio.Servicos
             return _repositorio.Listar().ToList();
         }
 
-        void IBaseServicos<TEntidade>.Remover(Guid id)
+        void IBaseServicos<TEntidade>.Remover(string id)
         {
             _repositorio.Remover(id);
         }

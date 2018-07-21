@@ -7,10 +7,10 @@ namespace RecursosCompartilhados.Aplicacao.Interfaces.ServicosApp
     public interface IBaseServicosApp<TEntidade, TViewModel> : IDisposable where TEntidade : IBaseEntidade where TViewModel : IBaseEntidade
     {
         TViewModel Inserir(TEntidade viewModel);
-        TViewModel Buscar(Guid id);
+        TViewModel Buscar(string id);
         IList<TViewModel> Listar();
         TViewModel Atualizar(TEntidade viewModel);
-        void Remover(Guid id);
+        void Remover(string id);
         int Salvar();
     }
 }

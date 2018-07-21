@@ -7,10 +7,10 @@ namespace RecursosCompartilhados.Dominio.Interfaces.Servicos
     public interface IBaseServicos<TEntidade> : IDisposable where TEntidade : IBaseEntidade
     {
         TEntidade Inserir(TEntidade entidade);
-        TEntidade Buscar(Guid id);
+        TEntidade Buscar(string id);
         IList<TEntidade> Listar();
         TEntidade Atualizar(TEntidade entidade);
-        void Remover(Guid id);
+        void Remover(string id);
         int Salvar();
     }
 }
