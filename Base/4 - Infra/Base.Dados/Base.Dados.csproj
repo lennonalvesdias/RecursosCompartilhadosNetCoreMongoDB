@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\4 - Infra\RecursosCompartilhados.Dados\RecursosCompartilhados.Dados.csproj" />
+    <ProjectReference Include="..\..\3 - Dominio\Base.Dominio\Base.Dominio.csproj" />
+  </ItemGroup>
+
+</Project>

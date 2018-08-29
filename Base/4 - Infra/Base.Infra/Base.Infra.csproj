@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="NativeInjectorBootStrapper.cs~RF1dd5c0c5.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LA.RecursosCompartilhados.Infra" Version="1.2.0" />
+  </ItemGroup>
+
+</Project>
