@@ -1,14 +1,22 @@
-﻿using MediatR;
-using RecursosCompartilhados.Dominio.Entidades;
-using RecursosCompartilhados.WebApi.Controllers;
+﻿using Base.Aplicacao.Interfaces.ServicosApp;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Base.WebApi.Controllers
 {
-    public class DefaultController : BaseController
+    public class DefaultController : ControllerBase
     {
-        public DefaultController(INotificationHandler<NotificacaoDeDominio> notificacoes) : base(notificacoes)
-        {
+        private readonly IDefaultServicosApp _servicosApp;
 
+        public DefaultController(IDefaultServicosApp servicosApp)
+        {
+            _servicosApp = servicosApp;
+        }
+
+        [HttpGet]
+        [Route("default")]
+        public IActionResult Get()
+        {
+            return Ok(_servicosApp.Listar());
         }
     }
 }

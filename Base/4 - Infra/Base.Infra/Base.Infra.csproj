@@ -12,4 +12,9 @@
     <PackageReference Include="LA.RecursosCompartilhados.Infra" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\2 - Aplicacao\Base.Aplicacao\Base.Aplicacao.csproj" />
+    <ProjectReference Include="..\Base.Dados\Base.Dados.csproj" />
+  </ItemGroup>
+
 </Project>

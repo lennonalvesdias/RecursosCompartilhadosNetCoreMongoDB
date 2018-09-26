@@ -4,7 +4,6 @@ using Base.Aplicacao.ViewModels;
 using Base.Dominio.Entidades;
 using Base.Dominio.Interfaces.Servicos;
 using MongoDB.Driver;
-using RecursosCompartilhados.Aplicacao.AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -23,24 +22,19 @@ namespace Base.Aplicacao.ServicosApp
             _mapper = mapper;
         }
 
-        Expression<Func<Default, bool>> GetMappedSelector(Expression<Func<DefaultSendViewModel, bool>> selector)
-        {
-            Expression<Func<Default, DefaultSendViewModel>> mapper = Mapper.CreateMapExpression<Default, DefaultSendViewModel>();
-            Expression<Func<Default, bool>> mappedSelector = selector.Compose(mapper);
-            return mappedSelector;
-        }
-
         #region Buscar
 
         public DefaultReturnViewModel Buscar(Expression<Func<DefaultSendViewModel, bool>> filtro)
         {
-            var viewModel = _mapper.Map<DefaultReturnViewModel>(_servicos.Buscar(GetMappedSelector(filtro)));
+            var mapFiltro = _mapper.Map<Expression<Func<Default, bool>>>(filtro);
+            var viewModel = _mapper.Map<DefaultReturnViewModel>(_servicos.Buscar(mapFiltro));
             return viewModel;
         }
 
         public async Task<DefaultReturnViewModel> BuscarAsync(Expression<Func<DefaultSendViewModel, bool>> filtro)
         {
-            var viewModel = _mapper.Map<DefaultReturnViewModel>(await _servicos.BuscarAsync(filtro));
+            var mapFiltro = _mapper.Map<Expression<Func<Default, bool>>>(filtro);
+            var viewModel = _mapper.Map<DefaultReturnViewModel>(await _servicos.BuscarAsync(mapFiltro));
             return viewModel;
         }
 
@@ -62,19 +56,24 @@ namespace Base.Aplicacao.ServicosApp
 
         public IList<DefaultReturnViewModel> Listar(Expression<Func<DefaultSendViewModel, bool>> filtro)
         {
-            var viewModels = _mapper.Map<IList<DefaultReturnViewModel>>(_servicos.Listar(filtro));
+            var mapFiltro = _mapper.Map<Expression<Func<Default, bool>>>(filtro);
+            var viewModels = _mapper.Map<IList<DefaultReturnViewModel>>(_servicos.Listar(mapFiltro));
             return viewModels;
         }
 
         public IList<DefaultReturnViewModel> Listar<TKey>(Expression<Func<DefaultSendViewModel, TKey>> ordernarPor, Expression<Func<DefaultSendViewModel, bool>> filtro = null)
         {
-            var viewModels = _mapper.Map<IList<DefaultReturnViewModel>>(_servicos.Listar(ordernarPor, filtro));
+            var mapOrdenarPor = _mapper.Map<Expression<Func<Default, TKey>>>(ordernarPor);
+            var mapFiltro = _mapper.Map<Expression<Func<Default, bool>>>(filtro);
+            var viewModels = _mapper.Map<IList<DefaultReturnViewModel>>(_servicos.Listar(mapOrdenarPor, mapFiltro));
             return viewModels;
         }
 
         public async Task<IList<DefaultReturnViewModel>> ListarAsync<TKey>(Expression<Func<DefaultSendViewModel, TKey>> ordernarPor, Expression<Func<DefaultSendViewModel, bool>> filtro = null)
         {
-            var viewModels = _mapper.Map<IList<DefaultReturnViewModel>>(await _servicos.ListarAsync(ordernarPor, filtro));
+            var mapOrdenarPor = _mapper.Map<Expression<Func<Default, TKey>>>(ordernarPor);
+            var mapFiltro = _mapper.Map<Expression<Func<Default, bool>>>(filtro);
+            var viewModels = _mapper.Map<IList<DefaultReturnViewModel>>(await _servicos.ListarAsync(mapOrdenarPor, mapFiltro));
             return viewModels;
         }
 
@@ -82,38 +81,46 @@ namespace Base.Aplicacao.ServicosApp
 
         #region Inserir
 
-        public DefaultReturnViewModel Inserir(DefaultSendViewModel entidade)
+        public DefaultReturnViewModel Inserir(DefaultSendViewModel viewModel)
         {
-            return _mapper.Map<DefaultReturnViewModel>(_servicos.Inserir(entidade));
+            var mapEntidade = _mapper.Map<Default>(viewModel);
+            return _mapper.Map<DefaultReturnViewModel>(_servicos.Inserir(mapEntidade));
         }
 
-        public async Task<DefaultReturnViewModel> InserirAsync(DefaultSendViewModel entidade)
+        public async Task<DefaultReturnViewModel> InserirAsync(DefaultSendViewModel viewModel)
         {
-            return _mapper.Map<DefaultReturnViewModel>(await _servicos.InserirAsync(entidade));
+            var mapEntidade = _mapper.Map<Default>(viewModel);
+            return _mapper.Map<DefaultReturnViewModel>(await _servicos.InserirAsync(mapEntidade));
         }
 
-        public IList<DefaultReturnViewModel> Inserir(IList<DefaultSendViewModel> entidades)
+        public IList<DefaultReturnViewModel> Inserir(IList<DefaultSendViewModel> viewModels)
         {
-            return _mapper.Map<IList<DefaultReturnViewModel>>(_servicos.Inserir(entidades));
+            var mapEntidades = _mapper.Map<IList<Default>>(viewModels);
+            return _mapper.Map<IList<DefaultReturnViewModel>>(_servicos.Inserir(mapEntidades));
         }
 
-        public async Task<IList<DefaultReturnViewModel>> InserirAsync(IList<DefaultSendViewModel> entidades)
+        public async Task<IList<DefaultReturnViewModel>> InserirAsync(IList<DefaultSendViewModel> viewModels)
         {
-            return _mapper.Map<IList<DefaultReturnViewModel>>(await _servicos.InserirAsync(entidades));
+            var mapEntidades = _mapper.Map<IList<Default>>(viewModels);
+            return _mapper.Map<IList<DefaultReturnViewModel>>(await _servicos.InserirAsync(mapEntidades));
         }
 
         #endregion
 
         #region Editar
 
-        public bool Editar(Expression<Func<DefaultSendViewModel, bool>> filtro, DefaultSendViewModel entidade)
+        public bool Editar(Expression<Func<DefaultSendViewModel, bool>> filtro, DefaultSendViewModel viewModel)
         {
-            return _servicos.Editar(filtro, entidade);
+            var mapFiltro = _mapper.Map<Expression<Func<Default, bool>>>(filtro);
+            var mapEntidade = _mapper.Map<Default>(filtro);
+            return _servicos.Editar(mapFiltro, mapEntidade);
         }
 
         public async Task<bool> EditarAsync(Expression<Func<DefaultSendViewModel, bool>> filtro, DefaultSendViewModel entidade)
         {
-            return await _servicos.EditarAsync(filtro, entidade);
+            var mapFiltro = _mapper.Map<Expression<Func<Default, bool>>>(filtro);
+            var mapEntidade = _mapper.Map<Default>(filtro);
+            return await _servicos.EditarAsync(mapFiltro, mapEntidade);
         }
 
         #endregion
@@ -122,22 +129,30 @@ namespace Base.Aplicacao.ServicosApp
 
         public bool Atualizar(Expression<Func<DefaultSendViewModel, bool>> filtro, UpdateDefinition<DefaultSendViewModel> entidade)
         {
-            return _servicos.Atualizar(filtro, entidade);
+            var mapFiltro = _mapper.Map<Expression<Func<Default, bool>>>(filtro);
+            var mapEntidade = _mapper.Map<UpdateDefinition<Default>>(filtro);
+            return _servicos.Atualizar(mapFiltro, mapEntidade);
         }
 
         public async Task<bool> AtualizarAsync(Expression<Func<DefaultSendViewModel, bool>> filtro, UpdateDefinition<DefaultSendViewModel> entidade)
         {
-            return await _servicos.AtualizarAsync(filtro, entidade);
+            var mapFiltro = _mapper.Map<Expression<Func<Default, bool>>>(filtro);
+            var mapEntidade = _mapper.Map<UpdateDefinition<Default>>(filtro);
+            return await _servicos.AtualizarAsync(mapFiltro, mapEntidade);
         }
 
         public bool AtualizarTodos(Expression<Func<DefaultSendViewModel, bool>> filtro, UpdateDefinition<DefaultSendViewModel> entidade)
         {
-            return _servicos.AtualizarTodos(filtro, entidade);
+            var mapFiltro = _mapper.Map<Expression<Func<Default, bool>>>(filtro);
+            var mapEntidade = _mapper.Map<UpdateDefinition<Default>>(filtro);
+            return _servicos.AtualizarTodos(mapFiltro, mapEntidade);
         }
 
         public async Task<bool> AtualizarTodosAsync(Expression<Func<DefaultSendViewModel, bool>> filtro, UpdateDefinition<DefaultSendViewModel> entidade)
         {
-            return await _servicos.AtualizarTodosAsync(filtro, entidade);
+            var mapFiltro = _mapper.Map<Expression<Func<Default, bool>>>(filtro);
+            var mapEntidade = _mapper.Map<UpdateDefinition<Default>>(filtro);
+            return await _servicos.AtualizarTodosAsync(mapFiltro, mapEntidade);
         }
 
         #endregion
@@ -146,12 +161,14 @@ namespace Base.Aplicacao.ServicosApp
 
         public bool Deletar(Expression<Func<DefaultSendViewModel, bool>> filtro)
         {
-            return _servicos.Deletar(filtro);
+            var mapFiltro = _mapper.Map<Expression<Func<Default, bool>>>(filtro);
+            return _servicos.Deletar(mapFiltro);
         }
 
         public async Task<bool> DeletarAsync(Expression<Func<DefaultSendViewModel, bool>> filtro)
         {
-            return await _servicos.DeletarAsync(filtro);
+            var mapFiltro = _mapper.Map<Expression<Func<Default, bool>>>(filtro);
+            return await _servicos.DeletarAsync(mapFiltro);
         }
 
         #endregion
@@ -170,12 +187,14 @@ namespace Base.Aplicacao.ServicosApp
 
         public long Contar(Expression<Func<DefaultSendViewModel, bool>> filtro, CountOptions opcoes = null)
         {
-            return _servicos.Contar(filtro, opcoes);
+            var mapFiltro = _mapper.Map<Expression<Func<Default, bool>>>(filtro);
+            return _servicos.Contar(mapFiltro, opcoes);
         }
 
         public async Task<long> ContarAsync(Expression<Func<DefaultSendViewModel, bool>> filtro, CountOptions opcoes = null)
         {
-            return await _servicos.ContarAsync(filtro, opcoes);
+            var mapFiltro = _mapper.Map<Expression<Func<Default, bool>>>(filtro);
+            return await _servicos.ContarAsync(mapFiltro, opcoes);
         }
 
         #endregion

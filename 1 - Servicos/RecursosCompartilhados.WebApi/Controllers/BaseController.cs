@@ -29,14 +29,10 @@ namespace RecursosCompartilhados.WebApi.Controllers
         {
             if (OperacaoValida())
             {
-                return Ok(
-                    new { success = true, data = resultado }
-                    );
+                return Ok(new { success = true, data = resultado });
             }
 
-            return BadRequest(
-                new { success = false, errors = _notificacoes.Listar().Select(n => n.Valor) }
-                );
+            return BadRequest(new { success = false, errors = _notificacoes.Listar().Select(n => n.Valor) });
         }
 
         protected void NotificarErros()

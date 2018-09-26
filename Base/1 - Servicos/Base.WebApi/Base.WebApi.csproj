@@ -14,4 +14,9 @@
     <PackageReference Include="LA.RecursosCompartilhados.WebApi" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\2 - Aplicacao\Base.Aplicacao\Base.Aplicacao.csproj" />
+    <ProjectReference Include="..\..\4 - Infra\Base.Infra\Base.Infra.csproj" />
+  </ItemGroup>
+
 </Project>
