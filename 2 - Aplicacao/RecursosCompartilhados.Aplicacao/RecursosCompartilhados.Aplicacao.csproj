@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>https://github.com/lennonalvesdias/RecursosCompartilhadosNetCoreMongoDB/blob/master/LICENSE</PackageLicenseUrl>
@@ -12,7 +12,7 @@
     <RepositoryType>Git</RepositoryType>
     <PackageId>LA.RecursosCompartilhados.Aplicacao</PackageId>
     <Description>Projeto open-source desenvolvido em .NET Core. Este projeto visa ser código base para aplicações, contendo abstrações e interfaces preparadas para futuros desenvolvimentos da comunidade. Recursos de Aplicação.</Description>
-    <Version>1.1.0.2</Version>
+    <Version>1.1.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,8 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="7.0.1" />
-    <PackageReference Include="RestSharp" Version="106.3.1" />
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="RestSharp" Version="106.6.7" />
   </ItemGroup>
 
 </Project>
