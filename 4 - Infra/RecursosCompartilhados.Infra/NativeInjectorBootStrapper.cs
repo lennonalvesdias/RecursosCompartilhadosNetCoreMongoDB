@@ -1,8 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using RecursosCompartilhados.Aplicacao.Interfaces.ServicosExternos;
-using RecursosCompartilhados.Aplicacao.ServicosExternos;
 using RecursosCompartilhados.Dominio.Entidades;
 using RecursosCompartilhados.Dominio.Notificacoes;
 
@@ -17,9 +15,6 @@ namespace RecursosCompartilhados.Infra
 
             // Dominio
             services.AddScoped<INotificationHandler<NotificacaoDeDominio>, GerenciadorDeNotificacoes>();
-
-            // Aplicacao
-            services.AddScoped<IRestSharpClient, RestSharpClient>();
         }
     }
 }
