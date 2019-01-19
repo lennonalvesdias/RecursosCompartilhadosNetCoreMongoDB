@@ -1,16 +1,17 @@
 using RecursosCompartilhados.Dominio.Interfaces.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace RecursosCompartilhados.Dominio.Interfaces.Servicos
 {
     public interface IBaseServicos<TEntidade> : IDisposable where TEntidade : IBaseEntidade
     {
         TEntidade Inserir(TEntidade entidade);
-        TEntidade Buscar(string id);
-        IList<TEntidade> Listar();
+        TEntidade Buscar(Expression<Func<TEntidade, bool>> filter);
+        IList<TEntidade> Listar(Expression<Func<TEntidade, bool>> filter);
         TEntidade Atualizar(TEntidade entidade);
-        void Remover(string id);
+        void Remover(Expression<Func<TEntidade, bool>> filter);
         int Salvar();
     }
 }

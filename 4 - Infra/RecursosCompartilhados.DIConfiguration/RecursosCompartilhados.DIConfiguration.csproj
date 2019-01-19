@@ -2,6 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Version>1.2.0.0</Version>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageId>LA.RecursosCompartilhados.DIConfiguration</PackageId>
+    <Authors>Lennon Alves</Authors>
+    <Company>Lennon Alves</Company>
+    <Product>RecursosCompartilhados.DIConfiguration</Product>
+    <Description>Projeto open-source desenvolvido em .NET Core. Este projeto visa ser código base para aplicações, contendo abstrações e interfaces preparadas para futuros desenvolvimentos da comunidade. Recursos de Injeção de Dependência.</Description>
+    <PackageLicenseUrl>https://github.com/lennonalvesdias/RecursosCompartilhadosNetCoreMongoDB/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/lennonalvesdias/RecursosCompartilhadosNetCoreMongoDB</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lennonalvesdias/RecursosCompartilhadosNetCoreMongoDB</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>

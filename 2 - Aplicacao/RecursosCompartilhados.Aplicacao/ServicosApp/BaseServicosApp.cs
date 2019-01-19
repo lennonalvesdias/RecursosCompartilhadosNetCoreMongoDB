@@ -4,6 +4,7 @@ using RecursosCompartilhados.Aplicacao.Interfaces.ServicosApp;
 using System.Collections.Generic;
 using RecursosCompartilhados.Dominio.Interfaces.Entidades;
 using AutoMapper;
+using System.Linq.Expressions;
 
 namespace RecursosCompartilhados.Aplicacao.ServicosApp
 {
@@ -23,9 +24,9 @@ namespace RecursosCompartilhados.Aplicacao.ServicosApp
             return viewModel;
         }
 
-        TViewModel IBaseServicosApp<TEntidade, TViewModel>.Buscar(string id)
+        TViewModel IBaseServicosApp<TEntidade, TViewModel>.Buscar(Expression<Func<TEntidade, bool>> filter)
         {
-            var entidade = _servicos.Buscar(id);
+            var entidade = _servicos.Buscar(filter);
             var viewModel = _mapper.Map<TViewModel>(entidade);
             return viewModel;
         }
@@ -41,16 +42,16 @@ namespace RecursosCompartilhados.Aplicacao.ServicosApp
             return viewModel;
         }
 
-        IList<TViewModel> IBaseServicosApp<TEntidade, TViewModel>.Listar()
+        IList<TViewModel> IBaseServicosApp<TEntidade, TViewModel>.Listar(Expression<Func<TEntidade, bool>> filter)
         {
-            var listaEntidade = _servicos.Listar();
+            var listaEntidade = _servicos.Listar(filter);
             var listaViewModel = _mapper.Map<IList<TViewModel>>(listaEntidade);
             return listaViewModel;
         }
 
-        void IBaseServicosApp<TEntidade, TViewModel>.Remover(string id)
+        void IBaseServicosApp<TEntidade, TViewModel>.Remover(Expression<Func<TEntidade, bool>> filter)
         {
-            _servicos.Remover(id);
+            _servicos.Remover(filter);
         }
 
         int IBaseServicosApp<TEntidade, TViewModel>.Salvar()
