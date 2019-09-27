@@ -5,20 +5,23 @@ namespace RecursosCompartilhados.Aplicacao.ViewModel
 {
     public class EntidadeGenerica<TViewModel, IBaseEntidade>
     {
+        private readonly MapperConfiguration _mapperConfiguration;
+
         public EntidadeGenerica()
         {
-            Mapper.Initialize(config => config.CreateMap<TViewModel, IBaseEntidade>());
+            _mapperConfiguration = new MapperConfiguration(cfg => cfg.CreateMap<TViewModel, IBaseEntidade>());
         }
 
-        public static IBaseEntidade ConverterViewModelEntidade(TViewModel vm)
+        public IBaseEntidade ConverterViewModelEntidade(TViewModel vm)
         {
-            Mapper.Initialize(config => config.CreateMap<TViewModel, IBaseEntidade>());
-            return Mapper.Map<TViewModel, IBaseEntidade>(vm);
+            var mapper = new Mapper(_mapperConfiguration);
+            return mapper.Map<TViewModel, IBaseEntidade>(vm);
         }
 
-        public static IList<IBaseEntidade> ConverterListaViewModelEntidade(IList<TViewModel> vm)
+        public IList<IBaseEntidade> ConverterListaViewModelEntidade(IList<TViewModel> vm)
         {
-            return Mapper.Map<IList<TViewModel>, IList<IBaseEntidade>>(vm);
+            var mapper = new Mapper(_mapperConfiguration);
+            return mapper.Map<IList<TViewModel>, IList<IBaseEntidade>>(vm);
         }
     }
 }
