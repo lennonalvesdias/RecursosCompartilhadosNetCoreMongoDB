@@ -14,7 +14,15 @@
     <Description>Projeto open-source desenvolvido em .NET Core. Este projeto visa ser código base para aplicações, contendo abstrações e interfaces preparadas para futuros desenvolvimentos da comunidade. Recursos de Infra.</Description>
     <Version>1.2.0.0</Version>
     <Product>RecursosCompartilhados.Infra</Product>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <ProjectReference Include="../../3 - Dominio/RecursosCompartilhados.Dominio/RecursosCompartilhados.Dominio.csproj" />
